@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Simple Checkout</title>
+	<meta id="meta" name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+</head>
+<body>
+
+
+    <h1>Omo Checkout</h1>
+    <div id="paypal-button-container"></div>
+    <!-- Sample PayPal credentials (client-id) are included -->
+    <script src="https://www.paypal.com/sdk/js?client-id=AWWD6JeIgrbiM7_kU0mefr10kmxVsz8-3TA1DP1zEeDygt2D6le0NumZK0kwWspsXr_grOxB4YXdJI7M&currency=USD&intent=capture&enable-funding=venmo" data-sdk-integration-source="integrationbuilder"></script>
+    <script>
+      const paypalButtonsComponent = paypal.Buttons({
+          // optional styling for buttons
+          // https://developer.paypal.com/docs/checkout/standard/customize/buttons-style-guide/
+          style: {
+            color: "blue",
+            shape: "pill",
+            layout: "vertical"
+          },
+
+          // set up the transaction
+          createOrder: (data, actions) => {
+              // pass in any options from the v2 orders create call:
+              // https://developer.paypal.com/api/orders/v2/#orders-create-request-body
+              const createOrderPayload = {
+                  purchase_units: [
+                      {
+                          amount: {
+                              value: "20"
+                          }
+                      }
+                  ]
+              };
+
+              return actions.order.create(createOrderPayload);
+          },
+
+          // finalize the transaction
+          onApprove: (data, actions) => {
+              const captureOrderHandler = (details) => {
+                  const payerName = details.payer.name.given_name;
+                  console.log('Transaction completed');
+              };
+
+              return actions.order.capture().then(captureOrderHandler);
+          },
+
+          // handle unrecoverable errors
+          onError: (err) => {
+              console.error('An error prevented the buyer from checking out with PayPal');
+          }
+      });
+
+      paypalButtonsComponent
+          .render("#paypal-button-container")
+          .catch((err) => {
+              console.error('PayPal Buttons failed to render');
+          });
+    </script>
+  </body>
+</html>

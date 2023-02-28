@@ -1,0 +1,534 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Sylibec Easpay Limited</title>
+    <!-- google-fonts -->
+    <link href="//fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css2?family=Roboto:wght@100;300;500;700;900&display=swap" rel="stylesheet">
+    <!-- //google-fonts -->
+    <!-- Template CSS Style link -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/newstyles.css' %}">
+</head>
+
+<body>
+    <!-- top header -->
+    <section class="w3l-top-header">
+        <div class="container">
+            <div class="top-content-w3ls d-flex align-items-center justify-content-between">
+                <div class="top-headers">
+                    <ul>
+                        <li>
+                            <a href="#help" class="d-sm-block d-none">Have any question ?</a>
+                        </li>
+                        <li>
+                            <i class="fa fa-phone"></i><a href="tel:+2347084558934">+2347084558934</a>
+                        </li>
+                        <li>
+                            <i class="fa fa-envelope"></i><a href="mailto:sylibeceasypay@gmail.com.com">sylibeceasypay@gmail.com</a>                        </li>
+                        </li>
+                    </ul>
+                </div>
+                <div class="top-headers top-headers-2">
+                    <ul>
+                        <li>
+                            <a href="#facebook"><span class="fab fa-facebook-f"></span></a>
+                        </li>
+                        <li>
+                            <a href="#twitter"><span class="fab fa-twitter"></span></a>
+                        </li>
+                        <li>
+                            <a href="#instagram"><span class="fab fa-instagram""></span></a>
+                        </li>
+                        <li class=" mr-0">
+                                    <a href="#linkedin"><span class="fab fa-linkedin-in"></span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- //top header -->
+    <!--header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg stroke">
+                <h1>
+                    <a class="navbar-brand" href="{% url 'admin' %}">
+                        <img src="{% static 'images/symbol1.png' %}" alt=""><span>S</span>ylibec Easpay Limited
+                    </a>
+                </h1>
+                <!-- if logo is image enable this   
+    <a class="navbar-brand" href="#index.html">
+        <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
+    </a> -->
+                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse"
+                    data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav ml-lg-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{% url 'admin' %}">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- search button -->
+                <div class="search-right ml-lg-3">
+                    <div class="search-container">
+                        <form action="/search" method="get">
+                            <input class="search expandright" id="searchright" type="search" name="q"
+                                placeholder="Search">
+                            <label class="button searchbutton" for="searchright"><i class="fas fa-search"></i></label>
+                        </form>
+                    </div>
+                </div>
+                <!-- //search button -->
+                <!-- toggle switch for light and dark theme -->
+                <div class="cont-ser-position">
+                    <nav class="navigation">
+                        <div class="theme-switch-wrapper">
+                            <label class="theme-switch" for="checkbox">
+                                <input type="checkbox" id="checkbox">
+                                <div class="mode-container">
+                                    <i class="gg-sun"></i>
+                                    <i class="gg-moon"></i>
+                                </div>
+                            </label>
+                        </div>
+                    </nav>
+                </div>
+                <!-- //toggle switch for light and dark theme -->
+            </nav>
+        </div>
+    </header>
+    <!--//header-->
+
+    <!-- inner banner -->
+    <!-- <section class="inner-banner py-lg-4 pt-lg-0 pt-5">
+        <div class="w3l-breadcrumb py-5 mt-lg-0 mt-3">
+            <div class="container py-xl-5 py-md-4">
+                <h4 class="inner-text-title font-weight-bold mb-md-2 mb-1">Vehicle License Renewal</h4>
+                <ul class="breadcrumbs-custom-path">
+                    <li><a href="index.html">Home</a></li>
+                </ul>
+            </div>
+        </div>
+    </section> -->
+    <!-- //inner banner -->
+
+    <div class="signup-content">
+        <!-- <div class="signup-img">
+            <img src="images/form-img.jpg" alt="">
+            <div class="signup-img-content">
+                <h2>Register now </h2>
+                <p>while seats are available !</p>
+            </div>
+        </div> -->
+        <div class="signup-form">
+            <div class="title-main1 text-center mx-auto mb-md-5 mb-4" style="width:100%;">
+                {% if updateitem %}                   
+            <form method="POST" class="register-form" id="register-form" action="{% url 'update2' updateitem.id %}">
+                {% csrf_token %}
+                <!-- <h3>Date of Application</h3>
+                <input type="date"> -->
+                <div class="form-row2">
+                    <div class="form-group1"><br>
+                        <h3>Owner's<br> Information</h3><br>
+                        <div class="form-input">
+                            <label for="full_name" class="required">Full name</label>
+                            <input type="text" name="license_name" id="full_name" placeholder="Enter Full Name" value="{{updateitem.license_name}}"/>
+                        </div>
+                        <div class="form-input">
+                            <label for="dob" class="required">Date of Birth</label><br>
+                            <input type="date" name="license_dob" id="dob" value="{{updateitem.license_dob}}"/>
+                        </div>
+                        <div class="form-input">
+                            <label for="gender" class="required">Gender</label><br>
+                            <input type="text" name="license_gender" id="gender" placeholder="Enter Gender" value="{{updateitem.license_gender}}"/>
+                        </div>
+                        <div class="form-input">
+                            <label for="phone" class="required">Phone Number</label>
+                            <input type="text" name="license_phone" id="phone" placeholder="Enter Phone Number" value="{{updateitem.license_phone}}"/>
+                        </div>
+                        <div class="form-input">
+                            <label for="email" class="">Email</label><br>
+                            <input type="text" name="license_email" id="email" placeholder="Enter Email Address" value="{{updateitem.license_email}}"/>
+                        </div>
+                        <div class="form-input">
+                            <label for="address" class="required">Address</label><br>
+                            <input type="text" name="license_address" id="address" placeholder="Enter Address" value="{{updateitem.license_address}}"/>
+                        </div>
+                        <div class="form-input">
+                            <label for="state" class="required">State</label><br>
+                            <input type="text" name="license_state" id="state" placeholder="Enter State" value="{{updateitem.license_state}}"/>
+                        </div>
+                        <div class="form-input">
+                            <label for="category" class="required">Vehicle Category</label><br>
+                            <input type="text" name="license_category" id="category" placeholder="Car or Jeep or Motorcyle or Bus" value="{{updateitem.license_category}}"/>
+                        </div>
+                        <div class="form-input">
+                            <label for="use1" class="required">Use of Car</label><br>
+                            <input type="text" name="license_use" id="us1" placeholder="Private or Commercial" value="{{license_use}}"/>
+                        </div>
+                    </div>
+                    <div class="form-group1"><br>
+                        <h3>Vehicle <br> Information</h3><br>
+
+                        <div class="form-input">
+                            <label for="make" class="required">Make</label><br>
+                            <input type="text" name="license_make" id="make" placeholder="e.g Toyota" value="{{updateitem.license_make}}"/>
+                        </div>
+                        <div class="form-input">
+                            <label for="model" class="required">model</label><br>
+                            <input type="text" name="license_model" id="model" placeholder="Camry XLE" value="{{updateitem.license_model}}"/>
+                        </div>
+                        <div class="form-input">
+                            <label for="colour" class="required">Colour</label><br>
+                            <input type="text" name="license_colour" id="colour" placeholder="e.g Blue" value="{{updateitem.license_colour}}"/>
+                        </div>
+                        <div class="form-input">
+                            <label for="yearmake" class="">Year of Make</label>
+                            <input type="text" name="license_makeyear" id="makeyear" value="{{updateitem.license_makeyear}}"/>
+                        </div>
+                        <div class="form-input">
+                            <label for="vehitype" class="required">Vehicle Type</label>
+                            <input type="text" name="license_vehitype" id="vehitype" placeholder="e.g Car or Jeep or Motorcyle or Bus" value="{{updateitem.license_vehitype}}"/>
+                        </div>
+                        <div class="form-input">
+                            <label for="plate" class="required">Plate Number</label>
+                            <input type="text" name="license_plate" id="plate1" placeholder="e.g ABJ1234YD" value="{{updateitem.license_plate}}"/>
+                        </div>
+                        <div class="form-input">
+                            <label for="chasis" class="required">VIN Number/Chasis</label>
+                            <input type="text" name="license_chasis" id="chasis1" placeholder="e.g 5J24YEF3BG" value="{{updateitem.license_chasis}}"/>
+                        </div>
+                        <div class="form-input">
+                            <label for="engine" class="required">Engine Number</label>
+                            <input type="text" name="license_engine" id="engine1" placeholder="e.g 89729SF65GKM3BZ" value="{{updateitem.license_engine}}"/>
+                        </div>
+                    </div>
+                </div><br>
+                <div class="form-submit">
+                    <input type="submit" value="Update" class="submit" id="submit" name="submit" />
+                    <!-- <input type="submit" value="Reset" class="submit" id="reset" name="reset" /> -->
+                </div>
+            </form>
+            {% else %}
+            <form method="POST" class="register-form" id="register-form">
+                {% csrf_token %}
+                <!-- <h3>Date of Application</h3>
+                <input type="date"> -->
+                <div class="form-row2">
+                    <div class="form-group1"><br>
+                        <h3>Owner's<br> Information</h3><br>
+                        <div class="form-input">
+                            <label for="full_name" class="required">Full name</label>
+                            <input type="text" name="license_name" id="full_name" placeholder="Enter Full Name"/>
+                        </div>
+                        <div class="form-input">
+                            <label for="dob" class="required">Date of Birth</label><br>
+                            <input type="date" name="license_dob" id="dob" />
+                        </div>
+                        <div class="form-input">
+                            <label for="gender" class="required">Gender</label><br>
+                            <input type="text" name="license_gender" id="gender" placeholder="Enter Gender"/>
+                        </div>
+                        <div class="form-input">
+                            <label for="phone" class="required">Phone Number</label>
+                            <input type="text" name="license_phone" id="phone" placeholder="Enter Phone Number"/>
+                        </div>
+                        <div class="form-input">
+                            <label for="email" class="">Email</label><br>
+                            <input type="text" name="license_email" id="email" placeholder="Enter Email Address"/>
+                        </div>
+                        <div class="form-input">
+                            <label for="address" class="required">Address</label><br>
+                            <input type="text" name="license_address" id="address" placeholder="Enter Address"/>
+                        </div>
+                        <div class="form-input">
+                            <label for="state" class="required">State</label><br>
+                            <input type="text" name="license_state" id="state" placeholder="Enter State" />
+                        </div>
+                        <div class="form-input">
+                            <label for="category" class="required">Vehicle Category</label><br>
+                            <input type="text" name="license_category" id="category" placeholder="Car or Jeep or Motorcyle or Bus"/>
+                        </div>
+                        <div class="form-input">
+                            <label for="use1" class="required">Use of Car</label><br>
+                            <input type="text" name="license_use" id="use1" placeholder="Private or Commercial" />
+                        </div>
+                    </div>
+                    <div class="form-group1"><br>
+                        <h3>Vehicle <br> Information</h3><br>
+
+                        <div class="form-input">
+                            <label for="make" class="required">Make</label><br>
+                            <input type="text" name="license_make" id="make" placeholder="e.g Toyota" />
+                        </div>
+                        <div class="form-input">
+                            <label for="model" class="required">model</label><br>
+                            <input type="text" name="license_model" id="model" placeholder="Camry XLE" />
+                        </div>
+                        <div class="form-input">
+                            <label for="colour" class="required">Colour</label><br>
+                            <input type="text" name="license_colour" id="colour" placeholder="e.g Blue" />
+                        </div>
+                        <div class="form-input">
+                            <label for="yearmake" class="">Year of Make</label>
+                            <input type="text" name="license_makeyear" id="yearmake" />
+                        </div>
+                        <div class="form-input">
+                            <label for="vehitype" class="required">Vehicle Type</label>
+                            <input type="text" name="license_vehitype" id="vehitype" placeholder="e.g Car or Jeep or Motorcyle or Bus" />
+                        </div>
+                        <div class="form-input">
+                            <label for="plate" class="required">Plate Number</label>
+                            <input type="text" name="license_plate" id="plate1" placeholder="e.g ABJ1234YD" />
+                        </div>
+                        <div class="form-input">
+                            <label for="chasis" class="required">VIN Number/Chasis</label>
+                            <input type="text" name="license_chasis" id="chasis1" placeholder="e.g 5J24YEF3BG" />
+                        </div>
+                        <div class="form-input">
+                            <label for="engine" class="required">Engine Number</label>
+                            <input type="text" name="license_engine" id="engine1" placeholder="e.g 89729SF65GKM3BZ" />
+                        </div>
+                    </div>
+                </div><br>
+                <div class="form-submit">
+                    <input type="submit" value="Submit" class="submit" id="submit" name="submit" />
+                    <!-- <input type="submit" value="Reset" class="submit" id="reset" name="reset" /> -->
+                </div>
+            </form>
+            {% endif %}
+
+            <div>
+                <form action="{% url 'searchme' %}" method="POST">
+                  {% csrf_token %}
+                  Details : <input type="text" name="search"><button type="submit" class="btn btn-dark">SUBMIT</button><a href="{% url 'posform' %}" class="btn btn-dark">View All</a>
+                </form>
+              </div>
+                    <!-- ------------Owner-------------- -->
+               </div>
+        </div>
+    </div>
+
+    <!-- footer -->
+    <footer class="w3l-footer-16">
+        <div class="w3l-footer-16-main py-5">
+            <div class="container py-md-4 pt-md-0 pt-3">
+                <div class="row align-items-center top-footer-content mb-5">
+                    <div class="col-lg-2 col-md-3">
+                        <h2><a class="logo" href="{% url 'admin' %}">
+                            <span>S</span>ylibec Easpay Limited
+                        </a></h2>
+                    </div>
+                    <div class="col-lg-7 col-md-9 mt-md-0 mt-4">
+                        <p class="top-p ml-md-4 pl-md-4 mt-sm-0 mt-2">Duis imperdiet sapien tortor, vitae congue
+                            diam auctor vitae.
+                            Aliquam
+                            eget turpis ornare, euismod ligul aeget, enenatis dui. </p>
+                    </div>
+                    <div class="col-lg-3 text-lg-right mt-lg-0 mt-4">
+                        <div class="columns-2">
+                            <ul class="social">
+                                <li><a href="#facebook"><span class="fab fa-facebook-f" aria-hidden="true"></span></a>
+                                </li>
+                                <li><a href="#twitter"><span class="fab fa-twitter" aria-hidden="true"></span></a>
+                                </li>
+                                <li><a href="#instagram"><span class="fab fa-instagram" aria-hidden="true"></span></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row footer-grids pt-5">
+                    <div class="col-lg-3 col-md-5 col-sm-6 column">
+                        <h3>Get In Touch</h3>
+                        <ul class="column2">
+                            <li class="d-flex align-items-center"><a href="mailto:sylibeceasypay@gmail.com"><i
+                                        class="fas fa-envelope-open-text"></i>sylibeceasypay@gmail.com</a>
+                            </li>
+                            <li class="py-sm-3 py-2 d-flex align-items-center"><a href="tel:07084558934"><i class="fas fa-phone-alt"></i>07084558934</a>
+                                <li class="py-sm-3 py-2 d-flex align-items-center"><a href="tel:08050918072"><i class="fas fa-phone-alt"></i>08050918072</a>
+                            </li>
+                            <li class="d-flex align-items-center">
+                                <p class="contact-para"><i class="fas fa-map-marker-alt"></i>HEAD OFFICE: Shalom M2&P Mall, Level A Suite 3A, 56 Ubeji/Egbokodo Road, Ubeji, Warri, Delta State.</p>
+                            </li>
+                            <li class="d-flex align-items-center">
+                                <p class="contact-para"><i class="fas fa-map-marker-alt"></i>BRANCH OFFICE: Block B, Shop 4 & 15, Ugbuwangwe Modern Market, Warri Delta State.</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-6 column mt-sm-0 mt-4">
+                        <h3>Quick links</h3>
+                        <ul class="footer-gd-16">
+                            <li><a href="{% url 'admin' %}"><i class="fas fa-angle-right"></i>Home</a></li>
+                            <li><a href="about.html"><i class="fas fa-angle-right"></i>About
+                                    Us</a></li>
+                            <li><a href="services.html"><i class="fas fa-angle-right"></i>Services</a>
+                            </li>
+                            <li><a href="contact.html"><i class="fas fa-angle-right"></i>Contact
+                                    Us</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-5 column mt-md-0 mt-4">
+                        <h3>Help & Support</h3>
+                        <ul class="footer-gd-16">
+                            <li><a href="#support"><i class="fas fa-angle-right"></i>Support</a></li>
+                            <li><a href="#live"><i class="fas fa-angle-right"></i>Live Chart</a></li>
+                            <li><a href="#privacy"><i class="fas fa-angle-right"></i>Privacy
+                                    Policy</a></li>
+                            <li><a href="#terms"><i class="fas fa-angle-right"></i>Terms &
+                                    conditions</a></li>
+                        </ul>
+                    </div>
+                    <!-- <div class="col-lg-4 col-md-7 col-sm-7 column mt-lg-0 mt-4">
+                        <h3>Newsletter </h3>
+                        <div class="end-column">
+                            <form action="#" class="subscribe" method="post">
+                                <input type="email" name="email" placeholder="Email Address" required="">
+                                <button class="button-style"><span class="fa fa-paper-plane"
+                                        aria-hidden="true"></span></button>
+                            </form>
+                            <p>Subscribe to our mailing list and get updates to your email inbox.</p>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+        <!-- <div class="copy-section text-center py-4">
+            <div class="container">
+                <p class="copy-text">&copy; 2021 Greensward. All rights reserved. Design by <a
+                        href="https://w3layouts.com/" target="_blank">W3Layouts</a>
+                </p>
+            </div>
+        </div> -->
+    </footer>
+    <!-- //footer -->
+
+    <!-- Js scripts -->
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fas fa-level-up-alt" aria-hidden="true"></span>
+    </button>
+    <script>
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function () {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("movetop").style.display = "block";
+            } else {
+                document.getElementById("movetop").style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+    </script>
+    <!-- //move top -->
+
+    <!-- common jquery plugin -->
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <!-- //common jquery plugin -->
+
+    <!-- theme switch js (light and dark)-->
+    <script src="{% static 'js/theme-change.js' %}"></script>
+    <script>
+        function autoType(elementClass, typingSpeed) {
+            var thhis = $(elementClass);
+            thhis.css({
+                "position": "relative",
+                "display": "inline-block"
+            });
+            thhis.prepend('<div class="cursor" style="right: initial; left:0;"></div>');
+            thhis = thhis.find(".text-js");
+            var text = thhis.text().trim().split('');
+            var amntOfChars = text.length;
+            var newString = "";
+            thhis.text("|");
+            setTimeout(function () {
+                thhis.css("opacity", 1);
+                thhis.prev().removeAttr("style");
+                thhis.text("");
+                for (var i = 0; i < amntOfChars; i++) {
+                    (function (i, char) {
+                        setTimeout(function () {
+                            newString += char;
+                            thhis.text(newString);
+                        }, i * typingSpeed);
+                    })(i + 1, text[i]);
+                }
+            }, 1500);
+        }
+
+        $(document).ready(function () {
+            // Now to start autoTyping just call the autoType function with the 
+            // class of outer div
+            // The second paramter is the speed between each letter is typed.   
+            autoType(".type-js", 200);
+        });
+    </script>
+    <!-- //theme switch js (light and dark)-->
+
+    <!-- MENU-JS -->
+    <script>
+        $(window).on("scroll", function () {
+            var scroll = $(window).scrollTop();
+
+            if (scroll >= 80) {
+                $("#site-header").addClass("nav-fixed");
+            } else {
+                $("#site-header").removeClass("nav-fixed");
+            }
+        });
+
+        //Main navigation Active Class Add Remove
+        $(".navbar-toggler").on("click", function () {
+            $("header").toggleClass("active");
+        });
+        $(document).on("ready", function () {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+            $(window).on("resize", function () {
+                if ($(window).width() > 991) {
+                    $("header").removeClass("active");
+                }
+            });
+        });
+    </script>
+    <!-- //MENU-JS -->
+
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+        $(function () {
+            $('.navbar-toggler').click(function () {
+                $('body').toggleClass('noscroll');
+            })
+        });
+    </script>
+    <!-- //disable body scroll which navbar is in active -->
+
+    <!--bootstrap-->
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <!-- //bootstrap-->
+    <!-- //Js scripts -->
+</body>
+
+</html>
+

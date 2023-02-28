@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Store</title>
+	<meta id="meta" name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+	<style type="text/css">
+		body{
+			background-color: #f0f0f0;
+			
+		}
+
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg">
+				<br>
+				<img src="{{learnerproduct.learnerimage_url}}">
+			</div>
+
+			<div class="col-lg">
+				<br>
+				<div class="card card-body">
+					<h3>{{learnerproduct.learnername}}</h3>
+					<hr>
+					<h4>Total: NGN {{learnerproduct.learnerprice}}</h4>
+					<hr>
+
+					<button class="inline-block mt-3 px-8 py-4 bg-cyan-600 text-white" type="button" onclick="makePayment()">CHECKOUT</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://checkout.flutterwave.com/v3.js"></script>
+
+
+	<script>
+		let cart_total = "{{ cart.get_total_cost}}" 
+		let cart_id = "{{cart.id}}"
+  
+  
+	  function makePayment() {
+	FlutterwaveCheckout({
+	  public_key: "FLWPUBK_TEST-2167afebd6be18f39035b31a447e6ab7-X",
+	  tx_ref: "sylibec-48981487343MDI0NzMx",
+	  amount: learnerprice,
+	  currency: "NGN",
+	  payment_options: "card, mobilemoneyghana, ussd",
+	  redirect_url: "http://127.0.0.1:8000/index/"+cart_id,
+	  meta: {
+		consumer_id: 23,
+		consumer_mac: "92a3-912ba-1192a",
+	  },
+	  customer: {
+		email: "{{request.user.email}}",
+		phone_number: "07048923268",
+		name: "{{request.user.username}}",
+	  },
+	  customizations: {
+		title: "Sylibec",
+		description: "Best Store",
+		logo: "https://www.logolynx.com/images/logolynx/22/2239ca38f5505fbfce7e55bbc0604386.jpeg",
+	  },
+	});
+  }
+	  </script>
+
+</body>
+</html>

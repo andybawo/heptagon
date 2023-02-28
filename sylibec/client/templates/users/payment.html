@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+</head>
+<body>
+    {% load paystack %}
+    <form >
+      <script src="https://js.paystack.co/v1/inline.js"></script>
+      <button type="button" onclick="makePayment()"> Pay </button> 
+    </form>
+     
+    <script>
+      function makePayment(){
+        var handler = PaystackPop.setup({
+                key : 'public_key', //public key from your paystack
+                email_pay: '{{email_pay}}',
+                amount: "amount to be paid",
+                currency: "NGN",
+                ref: ""+Math.floor((Math.random() * 100000000) + 1),
+                ref: ''+Math.floor((Math.random() * 1000000000) + 1),
+                callback: function(response){
+              alert('success. transaction ref is ' +response.reference);
+          },
+          onClose: function(){
+              alert('window closed');
+          }
+        });
+        handler.openIframe();
+      }
+      window.onload = makePayment()
+    </script>
+</body>
+</html>
